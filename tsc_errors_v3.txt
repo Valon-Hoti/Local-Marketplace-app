@@ -1,0 +1,4 @@
+﻿app/index.tsx(1281,36): error TS2339: Property 'append' does not exist on type 'typeof GiftedChat'.
+app/index.tsx(1337,25): error TS7006: Parameter 'props' implicitly has an 'any' type.
+app/index.tsx(1357,31): error TS7006: Parameter 'props' implicitly has an 'any' type.
+app/index.tsx(1358,23): error TS7006: Parameter 'props' implicitly has an 'any' type.
