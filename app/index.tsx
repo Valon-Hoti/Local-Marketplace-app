@@ -1355,7 +1355,7 @@ function ChatScreen({ session, listing, onBack, theme, t }: ChatProps) {
             placeholderTextColor: theme.textLight
           }}
           renderInputToolbar={(props: any) => <InputToolbar {...props} containerStyle={{ backgroundColor: theme.card, borderTopColor: theme.border, padding: 5 }} />}
-          renderSend={(props: any) => <Send {...props} containerStyle={{ justifyContent: 'center', marginRight: 10 }}><View style={{ backgroundColor: theme.primary, padding: 8, borderRadius: 20 }}><ArrowLeft size={16} color="white" style={{ transform: [{ rotate: '180deg' }] }} /></View></Send>}
+          renderSend={(props: any) => <Send {...props} containerStyle={{ justifyContent: 'center', alignItems: 'center', alignSelf: 'center', marginRight: 10 }}><View style={{ backgroundColor: theme.primary, padding: 8, borderRadius: 20 }}><SendIcon size={18} color="white" /></View></Send>}
         />
       </KeyboardAvoidingView>
     </SafeAreaView>
