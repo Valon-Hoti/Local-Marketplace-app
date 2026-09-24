@@ -3,6 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "target": "ESNext",
     "paths": {
       "react-native-gifted-chat": [
         "./declarations.d.ts"

@@ -6,7 +6,7 @@
 export const CONFIG = {
     // Google Cloud Vision API Key
     // WARNING: Ideally this should be restricted by IP or moved to a backend proxy.
-    GOOGLE_CLOUD_VISION_API_KEY: 'AIzaSyA_jt-wJ5r60-j4nLOgv4WXT0HMxW0HuZA',
+    GOOGLE_CLOUD_VISION_API_KEY: process.env.EXPO_PUBLIC_GOOGLE_CLOUD_VISION_API_KEY || '',
 
     // App Config
     APP_NAME: 'LocalMarketplace',

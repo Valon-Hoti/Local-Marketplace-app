@@ -1,14 +1,31 @@
 import { CONFIG } from '../constants/Config';
+import { checkRateLimit, getRemainingRateLimitTime } from './security';
 
 // Google Cloud Vision API Integration
 // Free Tier: 1,000 units/month
 
-const API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${CONFIG.GOOGLE_CLOUD_VISION_API_KEY}`;
-
 export const analyzeImage = async (base64Image: string, lang: string = 'sq'): Promise<{ label: string, score: number }[]> => {
     try {
+        if (!CONFIG.GOOGLE_CLOUD_VISION_API_KEY) {
+            throw new Error("Çelësi i Google Cloud Vision API mungon në konfigurim.");
+        }
+
+        // Rate Limit: Max 4 requests per 120 seconds to prevent abuse and billing spikes
+        const allowed = checkRateLimit('vision_api_rate', 4, 120000);
+        if (!allowed) {
+            const waitSec = getRemainingRateLimitTime('vision_api_rate', 120000);
+            throw new Error(`Keni bërë shumë kërkime me foto në një kohë të shkurtër. Ju lutem prisni ${waitSec} sekonda para se të provoni përsëri.`);
+        }
+
         // Sanitize Base64: Remove data URI prefix if present
         const cleanBase64 = base64Image.replace(/^data:image\/[a-zA-Z]+;base64,/, '');
+
+        // Max payload size check (~5MB in Base64)
+        if (cleanBase64.length > 7000000) {
+            throw new Error("Fotoja është shumë e madhe. Ju lutem zgjidhni një foto më të vogël (nën 5MB).");
+        }
+
+        const API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${CONFIG.GOOGLE_CLOUD_VISION_API_KEY}`;
 
         const body = {
             requests: [

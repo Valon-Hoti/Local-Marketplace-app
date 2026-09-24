@@ -7,23 +7,18 @@
     "icon": "./assets/images/icon.png",
     "scheme": "localmarketplace",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.valonhoti.nearbuy"
     },
     "android": {
+      "package": "com.valonhoti.nearbuy",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -44,11 +39,40 @@
           }
         }
       ],
-      "expo-web-browser"
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "NearBuy kërkon qasje në fotografi për të ngarkuar imazhe të shpalljeve.",
+          "cameraPermission": "NearBuy kërkon qasje në kamerë për të fotografuar produktet."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/icon.png",
+          "color": "#4F46E5"
+        }
+      ],
+      "expo-web-browser",
+      "expo-font",
+      "expo-image"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "9823dec8-22a1-4a5a-a591-0606aef3627b"
+      }
+    },
+    "owner": "valon-hoti",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/9823dec8-22a1-4a5a-a591-0606aef3627b"
     }
   }
 }
